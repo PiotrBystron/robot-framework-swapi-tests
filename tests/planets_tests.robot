@@ -20,3 +20,15 @@ Get Planet By ID - Umbara
     Status Should Be    200    ${response}
     ${data}=    Set Variable    ${response.json()}
     Validate Planet Data    ${data}    Umbara    unknown    unknown
+
+Get Planet By ID - Invalid ID 9999
+    ${response}=    Get Planet By Id    9999    404
+    Status Should Be    404    ${response}
+
+Get Planet By ID - Invalid ID -1
+    ${response}=    Get Planet By Id    -1    404
+    Status Should Be    404    ${response}
+
+Get Planet By ID - Invalid ID abc
+    ${response}=    Get Planet By Id    abc    404
+    Status Should Be    404    ${response}
