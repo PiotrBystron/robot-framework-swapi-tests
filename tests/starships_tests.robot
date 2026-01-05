@@ -20,3 +20,15 @@ Get Starship By ID - J-type diplomatic barge
     Status Should Be    200    ${response}
     ${data}=    Set Variable    ${response.json()}
     Validate Starship Data    ${data}    J-type diplomatic barge    2000000    unknown
+
+Get Person By ID - Invalid Starship ID 9999
+    ${response}=    Get Starship By Id    9999    404
+    Status Should Be    404    ${response}
+
+Get Person By ID - Invalid Starship ID -1
+    ${response}=    Get Starship By Id    -1    404
+    Status Should Be    404    ${response}
+
+Get Person By ID - Invalid Starship ID xyz
+    ${response}=    Get Starship By Id    xyz    404
+    Status Should Be    404    ${response}
