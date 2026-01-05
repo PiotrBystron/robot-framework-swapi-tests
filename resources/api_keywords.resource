@@ -25,5 +25,18 @@ Get Planet By Id
 Validate Planet Data
     [Arguments]    ${data}    ${name}    ${diameter}    ${population}
     Should Be Equal    ${data['name']}         ${name}
-    Should Be Equal    ${data['diameter']}       ${diameter}
+    Should Be Equal    ${data['diameter']}     ${diameter}
     Should Be Equal    ${data['population']}   ${population}
+
+
+Get Starship By Id
+    [Arguments]    ${starship_id}    ${expected_status}=200
+    Create Session    swapi    ${API_BASE_URL}
+    ${response}=    GET On Session    swapi    /starships/${starship_id}    expected_status=${expected_status}
+    RETURN        ${response}
+
+Validate Starship Data
+    [Arguments]    ${data}    ${name}    ${cost_in_credits}    ${cargo_capacity}
+    Should Be Equal    ${data['name']}              ${name}
+    Should Be Equal    ${data['cost_in_credits']}   ${cost_in_credits}
+    Should Be Equal    ${data['cargo_capacity']}    ${cargo_capacity}
